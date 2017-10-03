@@ -1,0 +1,9 @@
+<%= form_with(model: [ @character, @character.supports.build ]) do |form| %>
+  <p>
+    <%= form.label :partner_name %><br>
+    <%= form.text_field :partner_name %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

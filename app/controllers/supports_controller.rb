@@ -6,6 +6,11 @@ class SupportsController < ApplicationController
 
   def create
     @character = Character.find(params[:character_id])
+
+    params[:support][:character] = @character
+    params[:support][:partner] = Character.find_by(name: params[:support][:partner_name])
+    params[:support].delete(:partner_name) # Get rid of extraneous field
+
     @support = @character.supports.create(support_params)
     redirect_to character_path(@character)
   end
@@ -19,6 +24,7 @@ class SupportsController < ApplicationController
 
   private
     def support_params
-      params.require(:support).permit(:character, :partner)
+      # TODO: Fix the security on this later
+      params.require(:support).permit!
     end
 end
