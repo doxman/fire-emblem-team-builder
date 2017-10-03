@@ -24,4 +24,7 @@ class Support < ApplicationRecord
   def inverse_support_options
     { partner_id: character_id, character_id: partner_id }
   end
+
+  validates :character, presence: true, uniqueness: { scope: :partner }
+  validates_with SupportValidator
 end

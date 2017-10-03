@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 20171003154453) do
     t.string "game"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name", "game"], name: "index_characters_on_name_and_game", unique: true
+    t.index ["name"], name: "index_characters_on_name"
   end
 
   create_table "supports", force: :cascade do |t|

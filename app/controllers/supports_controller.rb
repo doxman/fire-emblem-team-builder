@@ -8,10 +8,12 @@ class SupportsController < ApplicationController
     @character = Character.find(params[:character_id])
 
     params[:support][:character] = @character
-    params[:support][:partner] = Character.find_by(name: params[:support][:partner_name])
+    params[:support][:partner] = Character.find_by(name: params[:support][:partner_name], game: @character[:game])
     params[:support].delete(:partner_name) # Get rid of extraneous field
+    if params[:support][:partner] != nil # If there is no character with that name, don't make the support
+      @support = @character.supports.create(support_params)
+    end
 
-    @support = @character.supports.create(support_params)
     redirect_to character_path(@character)
   end
 
