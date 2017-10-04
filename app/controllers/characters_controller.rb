@@ -19,7 +19,11 @@ class CharactersController < ApplicationController
     @character = Character.new(character_params)
 
     if @character.save
-      redirect_to @character
+      if helpers.otherCharactersFromTheSameGame(@character).length > 0
+        redirect_to @character
+      else
+        redirect_to characters_path # No point showing character if we can't add supports
+      end
     else
       render 'new'
     end
@@ -29,7 +33,11 @@ class CharactersController < ApplicationController
     @character = Character.find(params[:id])
 
     if @character.update(character_params)
-      redirect_to @character
+      if helpers.otherCharactersFromTheSameGame(@character).length > 0
+        redirect_to @character
+      else
+        redirect_to characters_path # No point showing character if we can't add supports
+      end
     else
       render 'edit'
     end
