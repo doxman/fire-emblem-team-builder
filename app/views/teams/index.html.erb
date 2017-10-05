@@ -1,0 +1,24 @@
+<h1>Fire Emblem Team Builder</h1>
+<p>Build your team below:</p>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+  </tr>
+
+  <% @unpicked.each do |character| %>
+    <tr>
+      <td><%= character.name %></td>
+      <td><%= button_to 'Add to team', { action: 'add_member', character_id: character[:id], :unpicked => @unpicked.collect{ |c| c.id }, :team => @team.collect{ |c| c.id } } %></td>
+    </tr>
+  <% end %>
+
+  <% @team.each do |character| %>
+    <tr>
+      <td><%= character.name %></td>
+      <td><%= button_to 'Remove from team', { action: 'remove_member', character_id: character[:id], :unpicked => @unpicked.collect{ |c| c.id }, :team => @team.collect{ |c| c.id } } %></td>
+    </tr>
+  <% end %>
+</table>
+
