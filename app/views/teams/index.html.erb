@@ -1,18 +1,26 @@
 <h1>Fire Emblem Team Builder</h1>
 <p>Build your team below:</p>
 
-<table>
+<table class="unpicked">
   <tr>
     <th>Name</th>
     <th></th>
   </tr>
 
-  <% @unpicked.each do |character| %>
+  <% sortByNumSupports(@unpicked, @team).each do |character| %>
     <tr>
-      <td><%= character.name %></td>
+      <td class="<%= classForSupportState(character, @team) %>"><%= character.name %></td>
       <td><%= button_to 'Add to team', { action: 'add_member', character_id: character[:id], :unpicked => @unpicked.collect{ |c| c.id }, :team => @team.collect{ |c| c.id } } %></td>
     </tr>
   <% end %>
+</table>
+
+
+<table class="team">
+  <tr>
+    <th>Name</th>
+    <th></th>
+  </tr>
 
   <% @team.each do |character| %>
     <tr>
@@ -21,4 +29,3 @@
     </tr>
   <% end %>
 </table>
-

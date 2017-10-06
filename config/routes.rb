@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'teams/index'
-  post 'teams/add_member'
-  post 'teams/remove_member'
+  match 'teams/add_member', via: [:get, :post]
+  match 'teams/remove_member', via: [:get, :post]
 
   resources :characters do
     resources :supports
