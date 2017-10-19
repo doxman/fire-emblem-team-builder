@@ -2,30 +2,22 @@
 <p>Build your team below:</p>
 
 <table class="unpicked">
-  <tr>
-    <th>Name</th>
-    <th></th>
-  </tr>
-
-  <% sortByNumSupports(@unpicked, @team).each do |character| %>
+  <thead>
     <tr>
-      <td class="<%= classForSupportState(character, @team) %>"><%= character.name %></td>
-      <td><%= button_to 'Add to team', { action: 'add_member', character_id: character[:id], :unpicked => @unpicked.collect{ |c| c.id }, :team => @team.collect{ |c| c.id } } %></td>
+      <th>Name</th>
+      <th></th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody></tbody>
 </table>
 
 
 <table class="team">
-  <tr>
-    <th>Name</th>
-    <th></th>
-  </tr>
-
-  <% @team.each do |character| %>
+  <thead>
     <tr>
-      <td><%= character.name %></td>
-      <td><%= button_to 'Remove from team', { action: 'remove_member', character_id: character[:id], :unpicked => @unpicked.collect{ |c| c.id }, :team => @team.collect{ |c| c.id } } %></td>
+      <th>Name</th>
+      <th></th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody></tbody>
 </table>
