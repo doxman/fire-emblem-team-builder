@@ -1,6 +1,9 @@
 class TeamsController < ApplicationController
   def index
-    gon.unpicked = Character.all.as_json(:include => [:partners])
-    gon.team = []
+    @characters = Character.all.as_json(include: { partners: { only: [:name, :id] } },
+                                        only: [:name, :id])
+
+    # gon.unpicked = Character.all.as_json(:include => [:partners])
+    # gon.team = []
   end
 end
