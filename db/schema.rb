@@ -10,15 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171003154453) do
+ActiveRecord::Schema.define(version: 20171029144345) do
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
-    t.string "game"
+    t.integer "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name", "game"], name: "index_characters_on_name_and_game", unique: true
+    t.index ["game_id"], name: "index_characters_on_game_id"
+    t.index ["name", "game_id"], name: "index_characters_on_name_and_game_id", unique: true
     t.index ["name"], name: "index_characters_on_name"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string "name"
+    t.string "full_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "supports", force: :cascade do |t|
