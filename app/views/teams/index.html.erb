@@ -1,5 +1,12 @@
 <h1>Fire Emblem Team Builder</h1>
-<p>Build your team below:</p>
+<p>Select your game:</p>
+
+<% @games.each do |game| %>
+  <tr>
+    <td><%= game.full_name %></td>
+    <td><%= link_to 'Show', teams_show_path(game) %></td>
+  </tr>
+<% end %>
 
 <div id="teams" data-characters='<%= @characters.to_json %>'></div>
 <%= javascript_pack_tag 'teams' %>
