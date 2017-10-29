@@ -1,9 +1,9 @@
-<%= form_with(model: [ @character, @character.supports.build ]) do |form| %>
+<%= form_with(model: [ @game, @character, @character.supports.build ]) do |form| %>
   <p>
     <%= form.label :partner_name %><br>
     <%= form.select :partner_name, availableSupports(@character) %>
   </p>
   <p>
-    <%= form.submit options={ disabled: shouldSubmitBeDisabled?(@character) } %>
+    <%= form.submit options={ disabled: hasNoAvailableSupports?(@character) } %>
   </p>
 <% end %>

@@ -1,7 +1,7 @@
 module SupportsHelper
   include CharactersHelper
 
-  def shouldSubmitBeDisabled?(character)
+  def hasNoAvailableSupports?(character)
     return otherCharactersFromTheSameGame(character)
             .reject { |c| character.partners.include? c }
             .length == 0

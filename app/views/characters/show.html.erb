@@ -3,16 +3,11 @@
   <%= @character.name %>
 </p>
 
-<p>
-  <strong>Game:</strong>
-  <%= @character.game %>
-</p>
-
 <h2>Supports</h2>
 <%= render @character.supports %>
 
 <h2>Add a support:</h2>
 <%= render 'supports/form' %>
 
-<%= link_to 'Edit', edit_character_path(@character) %> |
-<%= link_to 'Back', characters_path %>
+<%= link_to 'Edit', edit_game_character_path(@game, @character) %> |
+<%= link_to 'Back', game_path(@game) %>

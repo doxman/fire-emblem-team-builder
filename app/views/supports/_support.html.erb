@@ -1,7 +1,7 @@
 <p>
   <strong>Partner:</strong>
   <%= support.partner.name %>
-  <%= link_to 'Destroy', character_support_path(@character, support),
+  <%= link_to 'Destroy', game_character_support_path(@game, @character, support),
       method: :delete,
       data: { confirm: 'Are you sure?' } %>
 </p>

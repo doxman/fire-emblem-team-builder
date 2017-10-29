@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   get 'teams/index'
 
-  resources :characters do
-    resources :supports
+  resources :games do
+    resources :characters do
+      resources :supports
+    end
   end
 
   root 'teams#index'
