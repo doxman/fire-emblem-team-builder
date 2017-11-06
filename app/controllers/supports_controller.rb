@@ -3,10 +3,11 @@ class SupportsController < ApplicationController
     @character = Character.find(params[:character_id])
     @game = Game.find(@character.game_id)
 
-    params[:support][:character] = @character
-    params[:support][:partner] = Character.find_by(name: params[:support][:partner_name], game_id: @character[:game_id])
+    params[:support][:character_id] = @character.id
+    params[:support][:partner_id] = Character.find_by(name: params[:support][:partner_name], game_id: @character[:game_id]).id
     params[:support].delete(:partner_name) # Get rid of extraneous field
-    if params[:support][:partner] != nil # If there is no character with that name, don't make the support
+
+    if params[:support][:partner_id] != nil # If there is no character with that name, don't make the support
       @support = @character.supports.create(support_params)
     end
 
@@ -24,7 +25,6 @@ class SupportsController < ApplicationController
 
   private
     def support_params
-      # TODO: Fix the security on this later
-      params.require(:support).permit!
+      params.require(:support).permit(:character_id, :partner_id)
     end
 end

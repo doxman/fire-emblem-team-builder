@@ -11,7 +11,7 @@ class CharactersController < ApplicationController
 
   def create
     @game = Game.find(params[:game_id])
-    params[:character][:game] = @game
+    params[:character][:game_id] = @game.id
 
     @character = Character.new(character_params)
 
@@ -51,7 +51,6 @@ class CharactersController < ApplicationController
 
   private
     def character_params
-      # TODO: Fix the security on this later
-      params.require(:character).permit!
+      params.require(:character).permit(:name, :game_id)
     end
 end
