@@ -27,7 +27,7 @@
 </table>
 
 <h2>Add a character:</h2>
-<%= render 'characters/form' %>
+<%= render 'characters/form', characterMethod: @game.characters.build %>
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>

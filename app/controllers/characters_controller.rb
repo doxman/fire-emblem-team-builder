@@ -17,7 +17,7 @@ class CharactersController < ApplicationController
 
     if @character.save
       if helpers.otherCharactersFromTheSameGame(@character).length > 0
-        redirect_to @character
+        redirect_to game_character_path(@game, @character)
       else
         redirect_to game_path(@game) # No point showing character if we can't add supports
       end
@@ -32,7 +32,7 @@ class CharactersController < ApplicationController
 
     if @character.update(character_params)
       if helpers.otherCharactersFromTheSameGame(@character).length > 0
-        redirect_to @character
+        redirect_to game_character_path(@game, @character)
       else
         redirect_to game_path(@game) # No point showing character if we can't add supports
       end
