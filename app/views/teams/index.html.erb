@@ -7,6 +7,3 @@
     <td><%= link_to 'Show', teams_show_path(game) %></td>
   </tr>
 <% end %>
-
-<div id="teams" data-characters='<%= @characters.to_json %>'></div>
-<%= javascript_pack_tag 'teams' %>
