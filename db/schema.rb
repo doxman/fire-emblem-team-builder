@@ -25,8 +25,10 @@ ActiveRecord::Schema.define(version: 20171029144345) do
   create_table "games", force: :cascade do |t|
     t.string "name"
     t.string "full_name"
+    t.string "difficulty"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name", "difficulty"], name: "index_games_on_name_and_difficulty", unique: true
   end
 
   create_table "supports", force: :cascade do |t|

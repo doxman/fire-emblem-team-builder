@@ -3,7 +3,7 @@
 
 <% @games.each do |game| %>
   <tr>
-    <td><%= game.full_name %></td>
+    <td><%= game.full_name %>: <%= game.difficulty %></td>
     <td><%= link_to 'Show', teams_show_path(game) %></td>
   </tr>
 <% end %>
