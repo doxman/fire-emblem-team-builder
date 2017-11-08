@@ -51,6 +51,6 @@ class CharactersController < ApplicationController
 
   private
     def character_params
-      params.require(:character).permit(:name, :game_id)
+      params.require(:character).permit(:name, :game_id, :recruitment_chapter)
     end
 end

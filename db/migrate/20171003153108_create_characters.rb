@@ -2,6 +2,7 @@ class CreateCharacters < ActiveRecord::Migration[5.1]
   def change
     create_table :characters do |t|
       t.string :name, index: true
+      t.integer :recruitment_chapter
       t.references :game, foreign_key: true
 
       t.timestamps

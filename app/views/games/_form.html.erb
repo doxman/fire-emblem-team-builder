@@ -30,6 +30,11 @@
   </p>
 
   <p>
+    <%= form.label :num_chapters, "Number of chapters" %><br>
+    <%= form.number_field :num_chapters, min: 1 %>
+  </p>
+
+  <p>
     <%= form.submit %>
   </p>
 

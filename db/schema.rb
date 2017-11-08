@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 20171029144345) do
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
+    t.integer "recruitment_chapter"
     t.integer "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -26,6 +27,7 @@ ActiveRecord::Schema.define(version: 20171029144345) do
     t.string "name"
     t.string "full_name"
     t.string "difficulty"
+    t.integer "num_chapters"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name", "difficulty"], name: "index_games_on_name_and_difficulty", unique: true

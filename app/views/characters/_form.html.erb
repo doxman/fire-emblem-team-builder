@@ -3,6 +3,10 @@
     <%= form.label :name %><br>
     <%= form.text_field :name %>
   </p>
+  <p>
+    <%= form.label :recruitment_chapter %><br>
+    <%= form.number_field :recruitment_chapter, min: 1, max: @game.num_chapters %>
+  </p>
 
   <p>
     <%= form.submit %>
