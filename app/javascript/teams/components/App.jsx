@@ -9,7 +9,10 @@ class App extends React.Component {
       character.picked = false;
       character.numSupportsInTeam = 0;
     });
-    this.state = { characters: props.characters };
+    this.state = {
+      characters: props.characters,
+      warning: "Not enough characters picked"
+    };
 
     this.updateDisplay = this.updateDisplay.bind(this);
   }
@@ -41,7 +44,19 @@ class App extends React.Component {
         return b.numSupportsInTeam - a.numSupportsInTeam;
       });
 
-      return { characters: characters };
+      // Determine the new warning to show, if any
+      let warning = "";
+      const pickedCharacters = characters.filter((character) => character.picked);
+      if (pickedCharacters.length < props.game.min_team_size) {
+        warning = "Not enough characters picked";
+      } else if (pickedCharacters.length > props.game.max_team_size) {
+        warning = "Too many characters picked";
+      } else if (pickedCharacters.reduce((total, character) => total + character.recruitment_chapter, 1) /
+                 pickedCharacters.length > props.game.num_chapters / 2) {
+        warning = "Not enough early-game units on team";
+      }
+
+      return { characters: characters, warning: warning };
     });
   }
 
@@ -49,16 +64,22 @@ class App extends React.Component {
     return <div>
       <div className="team">
         <div className="team-heading">Team</div>
-        {this.state.characters.map((character) => !character.picked ? false :
+        {this.state.characters.map((character) => character.picked &&
           <Character key={character.id} character={character} updateDisplay={this.updateDisplay} />
         )}
       </div>
       <div className="unpicked">
         <div className="unpicked-heading">Unpicked</div>
-        {this.state.characters.map((character) => character.picked ? false :
+        {this.state.characters.map((character) => !character.picked &&
           <Character key={character.id} character={character} updateDisplay={this.updateDisplay} />
         )}
       </div>
+      {this.state.warning != "" &&
+        <div className="warning">
+          <h2>Warnings</h2>
+          <p>{this.state.warning}</p>
+        </div>
+      }
     </div>;
   }
 }
