@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20171029144345) do
     t.string "full_name"
     t.string "difficulty"
     t.integer "num_chapters"
+    t.integer "min_team_size"
+    t.integer "max_team_size"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name", "difficulty"], name: "index_games_on_name_and_difficulty", unique: true

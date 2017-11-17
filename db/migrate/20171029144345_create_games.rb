@@ -5,6 +5,8 @@ class CreateGames < ActiveRecord::Migration[5.1]
       t.string :full_name
       t.string :difficulty
       t.integer :num_chapters
+      t.integer :min_team_size
+      t.integer :max_team_size
 
       t.timestamps
     end

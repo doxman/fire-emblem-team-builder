@@ -35,6 +35,16 @@
   </p>
 
   <p>
+    <%= form.label :min_team_size, "Recommended min. team size" %><br>
+    <%= form.number_field :min_team_size, min: 1 %>
+  </p>
+
+  <p>
+    <%= form.label :max_team_size, "Recommended max. team size" %><br>
+    <%= form.number_field :max_team_size, min: 1 %>
+  </p>
+
+  <p>
     <%= form.submit %>
   </p>
 
