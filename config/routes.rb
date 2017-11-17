@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   end
 
   root 'teams#index'
+
+  get '*path' => redirect('/')
 end
