@@ -11,7 +11,7 @@ class App extends React.Component {
     });
     this.state = {
       characters: props.characters,
-      warning: "Not enough characters picked"
+      warnings: ["Not enough characters picked", "Team might not have enough early-game units to survive"]
     };
 
     this.updateDisplay = this.updateDisplay.bind(this);
@@ -44,19 +44,20 @@ class App extends React.Component {
         return b.numSupportsInTeam - a.numSupportsInTeam;
       });
 
-      // Determine the new warning to show, if any
-      let warning = "";
+      // Determine the new warnings to show, if any
+      let warnings = [];
       const pickedCharacters = characters.filter((character) => character.picked);
       if (pickedCharacters.length < props.game.min_team_size) {
-        warning = "Not enough characters picked";
+        warnings.push("Probably not enough characters to get through the game");
       } else if (pickedCharacters.length > props.game.max_team_size) {
-        warning = "Too many characters picked";
-      } else if (pickedCharacters.reduce((total, character) => total + character.recruitment_chapter, 1) /
-                 pickedCharacters.length > props.game.num_chapters / 2) {
-        warning = "Not enough early-game units on team";
+        warnings.push("Probably too many characters to keep up without grinding");
+      }
+      if (pickedCharacters.filter((character) => character.recruitment_chapter <= props.game.num_chapters / 2)
+                          .length < props.game.min_team_size * (2/3)) {
+        warnings.push("Team might not have enough early-game units to survive");
       }
 
-      return { characters: characters, warning: warning };
+      return { characters: characters, warnings: warnings };
     });
   }
 
@@ -74,10 +75,14 @@ class App extends React.Component {
           <Character key={character.id} character={character} updateDisplay={this.updateDisplay} />
         )}
       </div>
-      {this.state.warning != "" &&
-        <div className="warning">
-          <h2>Warnings</h2>
-          <p>{this.state.warning}</p>
+      {this.state.warnings.length > 0 &&
+        <div className="problems">
+          <h2>Potential problems</h2>
+          <ul>
+            {this.state.warnings.map((warning, idx) =>
+              <li key={idx}>{warning}</li>
+            )}
+          </ul>
         </div>
       }
     </div>;
