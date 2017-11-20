@@ -6,36 +6,17 @@
   display: inline-block;
   width: 100px;
   border: 2px solid black;
+  user-select: none;
 
   &-heading {
     font-weight: bold;
   }
 }
 
-.problems {
-  background: yellow;
+.unpicked {
+  background: linear-gradient(chartreuse, red);
 }
 
-.supported-by {
-  &-1 {
-    background-color: #ccffcc
-  }
-  &-2 {
-    background-color: #99ff99
-  }
-  &-3 {
-    background-color: #66ff66
-  }
-  &-4 {
-    background-color: #33ff33
-  }
-  &-5 {
-    background-color: #00ff00
-  }
-  &-6 {
-    background-color: #00cc00
-  }
-  &-7 {
-    background-color: #009900
-  }
+.problems {
+  background: yellow;
 }

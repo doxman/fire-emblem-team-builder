@@ -12,10 +12,7 @@ class Character extends React.Component {
   }
 
   render() {
-    return <div className={`supported-by-${this.props.character.numSupportsInTeam}`}
-                onClick={this.handleClick}>
-        {this.props.character.name}
-      </div>;
+    return <div onClick={this.handleClick}>{this.props.character.name}</div>;
   }
 }
 

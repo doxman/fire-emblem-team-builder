@@ -11,7 +11,8 @@ class App extends React.Component {
     });
     this.state = {
       characters: props.characters,
-      warnings: ["Not enough characters picked", "Team might not have enough early-game units to survive"]
+      warnings: ["Probably not enough characters to get through the game",
+                 "Team might not have enough early-game units to survive"]
     };
 
     this.updateDisplay = this.updateDisplay.bind(this);
@@ -37,12 +38,10 @@ class App extends React.Component {
           }
         });
 
-      characters.sort((a,b) => {
-        if (a.numSupportsInTeam == b.numSupportsInTeam) {
-          return a.id - b.id;
-        }
-        return b.numSupportsInTeam - a.numSupportsInTeam;
-      });
+      characters.sort((a,b) => b.rating - a.rating ||
+                               b.numSupportsInTeam - a.numSupportsInTeam ||
+                               a.recruitment_chapter - b.recruitment_chapter ||
+                               a.id - b.id);
 
       // Determine the new warnings to show, if any
       let warnings = [];
