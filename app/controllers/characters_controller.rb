@@ -16,11 +16,14 @@ class CharactersController < ApplicationController
     @character = Character.new(character_params)
 
     if @character.save
-      if helpers.otherCharactersFromTheSameGame(@character).length > 0
-        redirect_to game_character_path(@game, @character)
-      else
-        redirect_to game_path(@game) # No point showing character if we can't add supports
-      end
+      redirect_to game_path(@game)
+
+      # TODO: Bring the optional redirect back if the UI changes to fit it better
+      # if helpers.otherCharactersFromTheSameGame(@character).length > 0
+      #   redirect_to game_character_path(@game, @character)
+      # else
+      #   redirect_to game_path(@game) # No point showing character if we can't add supports
+      # end
     else
       redirect_to game_path(@game)
     end
@@ -31,11 +34,14 @@ class CharactersController < ApplicationController
     @character = Character.find(params[:id])
 
     if @character.update(character_params)
-      if helpers.otherCharactersFromTheSameGame(@character).length > 0
-        redirect_to game_character_path(@game, @character)
-      else
-        redirect_to game_path(@game) # No point showing character if we can't add supports
-      end
+      redirect_to game_path(@game)
+
+      # TODO: Bring the optional redirect back if the UI changes to fit it better
+      # if helpers.otherCharactersFromTheSameGame(@character).length > 0
+      #   redirect_to game_character_path(@game, @character)
+      # else
+      #   redirect_to game_path(@game) # No point showing character if we can't add supports
+      # end
     else
       render 'edit'
     end
@@ -51,6 +57,6 @@ class CharactersController < ApplicationController
 
   private
     def character_params
-      params.require(:character).permit(:name, :game_id, :recruitment_chapter)
+      params.require(:character).permit(:name, :game_id, :recruitment_chapter, :rating)
     end
 end

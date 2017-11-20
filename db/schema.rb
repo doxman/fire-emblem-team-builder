@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20171029144345) do
   create_table "characters", force: :cascade do |t|
     t.string "name"
     t.integer "recruitment_chapter"
+    t.integer "rating"
     t.integer "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

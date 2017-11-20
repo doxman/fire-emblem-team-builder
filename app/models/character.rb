@@ -6,5 +6,6 @@ class Character < ApplicationRecord
   validates :name, presence: true, uniqueness: { scope: :game }
   validates :game, presence: true
   validates :recruitment_chapter, presence: true, numericality: { only_integer: true }
+  validates :rating, presence: true, numericality: { only_integer: true }
   validates_with CharacterValidator
 end

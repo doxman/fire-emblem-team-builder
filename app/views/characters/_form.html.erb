@@ -7,6 +7,10 @@
     <%= form.label :recruitment_chapter %><br>
     <%= form.number_field :recruitment_chapter, min: 1, max: @game.num_chapters %>
   </p>
+  <p>
+    <%= form.label :rating %><br>
+    <%= form.number_field :rating, min: 1, max: 5 %>
+  </p>
 
   <p>
     <%= form.submit %>
